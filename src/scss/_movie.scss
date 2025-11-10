@@ -110,3 +110,13 @@
 #search-movie-input {
   border: none;
 }
+
+
+.settingsMovieBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #EEEEEE;
+  height: 60px;
+}
+

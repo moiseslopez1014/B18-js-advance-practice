@@ -4,15 +4,16 @@ const baseURL = 'https://api.themoviedb.org/3/'; //start URL FROM API for Fetchi
 export const portraitsBaseURL = 'https://image.tmdb.org/t/p/w300'; //URL to get poster and credits profile images.
 
 //FETCH LIST MOVIES
-export async function getMovies(container, category='', searchInput) {
+export async function getMovies(container, category='popular', searchInput) {
     container.innerHTML = '';
 
     try {
-        const res = await fetch(`${baseURL}${!searchInput ? '' : 'search/'}movie/${category}?query=${searchInput}&api_key=${API_KEY}&language=es-ES&page=1`);
+        const res = await fetch(`${baseURL}${!searchInput ? '' : 'search/'}movie${!searchInput ? '/' : ''}${category}?query=${searchInput}&api_key=${API_KEY}&language=es-ES&page=1`);
         
         if (!res.ok) throw new Error('Petition Error ' + res.status);
         const data = await res.json();
-        return showMovies(container, data);
+        //return showMovies(container, data);
+        return console.log(data);
 
     } catch (error) {
         console.log(error.message);

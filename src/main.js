@@ -1,13 +1,17 @@
+
+import { showToolBar } from './scripts/utils/toolbar.js';
 import './scss/style.scss'
 
 const anchorElement = document.querySelector('#app');
 
-const settingsMovieBar = document.createElement('div');
-settingsMovieBar.className = 'settingsMovieBar';
+export const toolbarMovies = document.createElement('div');
+toolbarMovies.className = 'settingsMovieBar';
 
-anchorElement.appendChild(settingsMovieBar);
+anchorElement.appendChild(toolbarMovies);
 
 
-let viewingmode = 'grid';
-let viewingstatus = 'movies';
+export let viewingMode = 'grid';
+export let viewingStatus = 'movies';
+
+showToolBar(toolbarMovies, viewingStatus);
 

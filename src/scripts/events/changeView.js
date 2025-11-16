@@ -1,20 +1,20 @@
+import { viewingMode, setViewingMode } from "../modules/state.js";
 
-import { setViewingMode } from "../modules/state.js"; 
-import { getMovies } from "../api/fetching.js";
-
+//CHANGES CLASS FOR MOVIE DIV
 export function changeView(buttonsDiv) {
-    buttonsDiv.addEventListener("click", (event) => {
+  buttonsDiv.addEventListener("click", (event) => {
+    const target = event.target;
+    const mainFrame = document.getElementById("mainFrame");
+    if (!mainFrame) return;
 
-        const target = event.target;
+    if (target.id === "gridIcon") {
+      setViewingMode("movie-grid");
+    } else if (target.id === "listIcon") {
+      setViewingMode("movie-list");
+    } else {
+      return;
+    }
 
-        if (target.id === "gridIcon") {
-            setViewingMode("movie-grid");
-            getMovies(); // repinta usando grid
-        }
-
-        if (target.id === "listIcon") {
-            setViewingMode("movie-list");
-            getMovies(); // repinta usando list
-        }
-    });
+    mainFrame.className = viewingMode;
+  });
 }

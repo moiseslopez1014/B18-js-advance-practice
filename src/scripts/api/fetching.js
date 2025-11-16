@@ -1,3 +1,4 @@
+import { showDetails } from "../elements/mainFrame.js";
 import { showMovies } from "../utils/dataTreatment.js";
  //
 export const API_KEY=
@@ -27,12 +28,17 @@ export async function getMovies(category='popular', searchInput) {
 
 // FETCH CREDITS INFO
 export async function getMovieDetailed(movieID) {
+    const mainFrame = document.getElementById('mainFrame');
+    mainFrame.innerHTML = '';
+
     try {
         const res = await fetch(`${baseURL}movie/${movieID}?api_key=${API_KEY}&language=es-ES&append_to_response=credits`);
 
         if (!res.ok) throw new Error('Petition Error ' + res.status);
         const data = await res.json();
-        return showDetails(data);
+
+        console.log(data);
+        return showDetails(data, mainFrame);
     } catch (error) {
         console.log(error.message);
     }

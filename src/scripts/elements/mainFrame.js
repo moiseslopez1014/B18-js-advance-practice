@@ -1,4 +1,5 @@
 import { portraitsBaseURL } from "../api/fetching.js";
+import { selectMovie } from "../events/selectMovie.js";
 
 
 
@@ -41,6 +42,87 @@ export function createMovieCard(movie) {
   divInfo.appendChild(movieDescription);
   movieDiv.appendChild(divInfo);
 
+  selectMovie(moviePoster, movieTitle);
+
 
   return movieDiv;
+}
+
+
+export function showDetails(movie, container) {
+  //credits poster
+
+  const creditsImg = document.createElement("img");
+  if (movie.poster_path === null) {
+    creditsImg.setAttribute("src", "../../imgs/logomovies.png");
+  } else {
+    creditsImg.setAttribute(
+      "src",
+      `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    );
+  }
+  creditsImg.className = "creditsIMG";
+
+  container.appendChild(creditsImg);
+
+  //div credits
+
+  const creditsDiv = document.createElement("div");
+  creditsDiv.className = "creditsDiv";
+
+  container.appendChild(creditsDiv);
+
+  //Credits titulo
+
+  const creditsTitle = document.createElement("h2");
+  creditsTitle.textContent = movie.title;
+
+  creditsDiv.appendChild(creditsTitle);
+
+  //credits sinopsis
+
+  const creditsDescription = document.createElement("p");
+  creditsDescription.textContent = movie.overview;
+
+  creditsDiv.appendChild(creditsDescription);
+
+  //DIV FOR CASTING
+
+  const creditsCastingDiv = document.createElement("div");
+  creditsCastingDiv.className = "creditsCastingDiv";
+
+  creditsDiv.appendChild(creditsCastingDiv);
+
+  //DIV FOR ACTOR
+
+  movie.credits.cast.forEach((actor) => {
+    if (actor.profile_path !== null) {
+      const actorDiv = document.createElement("div");
+      actorDiv.className = "actorDiv";
+
+      creditsCastingDiv.appendChild(actorDiv);
+
+      const actorPortrait = document.createElement("img");
+      actorPortrait.setAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/w300${actor.profile_path}`
+      );
+
+      actorDiv.appendChild(actorPortrait);
+
+      const actorName = document.createElement("p");
+      actorName.textContent = actor.name;
+
+      actorDiv.appendChild(actorName);
+
+      const separasion = document.createElement("hr");
+
+      actorDiv.appendChild(separasion);
+
+      const actorChar = document.createElement("p");
+      actorChar.textContent = actor.character;
+
+      actorDiv.appendChild(actorChar);
+    }
+  });
 }

@@ -1,6 +1,8 @@
 import { changeView } from "../events/changeView.js";
-import { createCategorySelection } from "../utils/toolbar.js";
+import { createCategorySelection, showToolBar } from "../utils/toolbar.js";
 import { changeCategory } from "../events/changeCategory.js";
+import { setViewingStatus } from "../modules/state.js";
+import { getMovies } from "../api/fetching.js";
 
 export function createToolBarButtons(container) {
     const viewButtons = document.createElement('div');
@@ -39,5 +41,18 @@ export function createReturnButton(container) {
     const returnButton = document.createElement('img');
     returnButton.setAttribute('src','../../../public/left-arrow.svg');
 
+    returnButton.addEventListener("click", () => {
+        const toolbar = document.querySelector('.settingsMovieBar');
+        const creditsSection = document.getElementById('mainFrame2')
+        creditsSection.innerHTML = '';
+
+        setViewingStatus("movies");
+        toolbar.innerHTML = '';
+        showToolBar(toolbar, "movies");
+
+        getMovies(); // ← volver a la vista previa
+    });
+
     container.appendChild(returnButton);
+
 }

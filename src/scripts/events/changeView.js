@@ -1,6 +1,5 @@
 import { viewingMode, setViewingMode } from "../modules/state.js";
 
-//CHANGES CLASS FOR MOVIE DIV
 export function changeView(buttonsDiv) {
   buttonsDiv.addEventListener("click", (event) => {
     const target = event.target;

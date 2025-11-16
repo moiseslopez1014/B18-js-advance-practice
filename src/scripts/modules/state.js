@@ -1,7 +1,6 @@
 export let viewingMode = "movie-grid";
 export let viewingStatus = "movies";
 
-// CACHE
 export const cache = {
   lastCategory: "now_playing",
   lastSearch: "",

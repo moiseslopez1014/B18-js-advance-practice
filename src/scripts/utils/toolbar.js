@@ -4,7 +4,6 @@ import {
   createToolBarButtons,
 } from "../elements/navigationBar.js";
 
-//DETERMINE CURRENT SECTION AND PAINT  APPROPIATE TOOLBAR CONTENT
 export function showToolBar(container, mode) {
   if (mode === "movies") {
     createToolBarButtons(container);
@@ -13,7 +12,6 @@ export function showToolBar(container, mode) {
   }
 }
 
-// GET CATEGORIES FROM API VARIABLES AND CONSTRUCT SELECTOR WITH IT
 export function createCategorySelection(container) {
   const categoriesToAppend = Object.entries(categoriesES);
 

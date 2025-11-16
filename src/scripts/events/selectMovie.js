@@ -1,6 +1,5 @@
 import { getMovieDetailed } from "../api/fetching.js";
 
-//LISTENER TO SELECT MOVIE FROM POSTER AND TITLE, CALL FETCH FOR CREDITS
 export function selectMovie(element1, element2) {
   element1.addEventListener("click", (event) => {
     event.stopPropagation();

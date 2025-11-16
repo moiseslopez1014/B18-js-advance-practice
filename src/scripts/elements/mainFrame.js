@@ -1,17 +1,16 @@
 import { portraitsBaseURL } from "../api/fetching.js";
 import { selectMovie } from "../events/selectMovie.js";
 
-// MOVIE CARD
 export function createMovieCard(movie) {
-  const movieDiv = document.createElement("div"); // card
+  const movieDiv = document.createElement("div"); 
   movieDiv.className = "movieDiv";
 
-  const moviePoster = document.createElement("img"); //poster
+  const moviePoster = document.createElement("img"); 
   moviePoster.className = "movie-poster";
   if (!movie.poster_path) {
-    moviePoster.setAttribute("src", "../../../public/NoPoster.png"); //In case movie doesnt have a poster
+    moviePoster.setAttribute("src", "../../../public/NoPoster.png"); 
   } else {
-    moviePoster.setAttribute("src", `${portraitsBaseURL}${movie.poster_path}`); //set img with movie poster
+    moviePoster.setAttribute("src", `${portraitsBaseURL}${movie.poster_path}`); 
   }
 
   const divInfo = document.createElement("div");
@@ -21,9 +20,9 @@ export function createMovieCard(movie) {
   movieTitle.textContent = movie.title;
   movieTitle.className = "movie-title";
 
-  movieTitle.setAttribute("movie-id", movie.id); // we store the ID of the movie to use later in the events
+  movieTitle.setAttribute("movie-id", movie.id);
 
-  moviePoster.setAttribute("movie-id", movie.id); // we store the ID of the movie to use later in the events
+  moviePoster.setAttribute("movie-id", movie.id); 
 
   const movieInfo = document.createElement("p");
   movieInfo.className = "movieInfo";
@@ -34,7 +33,6 @@ export function createMovieCard(movie) {
   const movieDescription = document.createElement("p");
   movieDescription.textContent = movie.overview;
   movieDescription.className = "movie-overview";
-  //APPENDS
   movieDiv.appendChild(moviePoster);
   divInfo.appendChild(movieTitle);
   divInfo.appendChild(movieInfo);
@@ -53,7 +51,6 @@ export function showDetails(movie, container) {
     `url("https://image.tmdb.org/t/p/w300${movie.poster_path}")`
   );
 
-  //credits poster
 
   const creditsImg = document.createElement("img");
   if (movie.poster_path === null) {
@@ -68,14 +65,12 @@ export function showDetails(movie, container) {
 
   container.appendChild(creditsImg);
 
-  //div credits
 
   const creditsDiv = document.createElement("div");
   creditsDiv.className = "creditsDiv";
 
   container.appendChild(creditsDiv);
 
-  //Credits titulo
 
   const creditsTitle = document.createElement("h2");
   creditsTitle.textContent = movie.title;
@@ -90,21 +85,18 @@ export function showDetails(movie, container) {
 
   creditsDiv.appendChild(movieInfo);
 
-  //credits sinopsis
 
   const creditsDescription = document.createElement("p");
   creditsDescription.textContent = `Sinopsis: ${movie.overview}`;
 
   creditsDiv.appendChild(creditsDescription);
 
-  //DIV FOR CASTING
 
   const creditsCastingDiv = document.createElement("div");
   creditsCastingDiv.className = "creditsCastingDiv";
 
   creditsDiv.appendChild(creditsCastingDiv);
 
-  //DIV FOR ACTOR
 
   movie.credits.cast.forEach((actor) => {
     if (actor.profile_path !== null) {

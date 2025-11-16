@@ -4,25 +4,23 @@ import { showMovies } from "../utils/dataTreatment.js";
 import { showToolBar } from "../utils/toolbar.js";
 import { API_KEY } from "./api_key.js";
 
-const baseURL = "https://api.themoviedb.org/3/"; //start URL FROM API for Fetching;
-export const portraitsBaseURL = "https://image.tmdb.org/t/p/w300"; //URL to get poster and credits profile images.
+const baseURL = "https://api.themoviedb.org/3/";
+export const portraitsBaseURL = "https://image.tmdb.org/t/p/w300";
 
-//FETCH LIST MOVIES
 export async function getMovies(category = "popular", searchInput) {
   const mainFrame = document.getElementById("mainFrame");
-  mainFrame.innerHTML = ""; //cleans container
-  mainFrame.className = viewingMode; //remembers view mode and re-apply
+  mainFrame.innerHTML = "";
+  mainFrame.className = viewingMode; 
 
-  const sameCategory = category === cache.lastCategory; //get data from memory
+  const sameCategory = category === cache.lastCategory; 
   const sameSearch = searchInput === cache.lastSearch;
 
   if (sameCategory && sameSearch && cache.lastResults) {
-    showMovies(mainFrame, { results: cache.lastResults }); // if there is cache, ignore fetch and paint saved content
+    showMovies(mainFrame, { results: cache.lastResults }); 
     return;
   }
 
   try {
-    //TRying to explain...            if no search nothing to do...      if not search put /     reserved to category  if no search query stays empty
     const res = await fetch(
       `${baseURL}${!searchInput ? "" : "search/"}movie${
         !searchInput ? "/" : ""
@@ -33,7 +31,7 @@ export async function getMovies(category = "popular", searchInput) {
     const data = await res.json();
 
     cache.lastCategory = category;
-    cache.lastSearch = searchInput; //set cache after fetch
+    cache.lastSearch = searchInput; 
     cache.lastResults = data.results;
 
     showMovies(mainFrame, data);
@@ -42,19 +40,16 @@ export async function getMovies(category = "popular", searchInput) {
   }
 }
 
-// FETCH CREDITS INFO
 export async function getMovieDetailed(movieID) {
   const mainFrame = document.getElementById("mainFrame");
   const mainFrame2 = document.getElementById("mainFrame2");
   const toolbar = document.querySelector(".settingsMovieBar");
 
   mainFrame.innerHTML = "";
-  mainFrame2.innerHTML = ""; // cleans
+  mainFrame2.innerHTML = ""; 
 
-  // CHANGE STATE
   setViewingStatus("details");
 
-  // REPAINT TOOLBAR
   toolbar.innerHTML = "";
   showToolBar(toolbar, "details");
   try {

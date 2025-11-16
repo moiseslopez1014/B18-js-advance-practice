@@ -10,16 +10,13 @@ export function createToolBarButtons(container) {
 
   const categorySelector = document.createElement("select");
 
-  //Call to function to get categories
   createCategorySelection(categorySelector);
 
-  // GRID ICON
   const gridIcon = document.createElement("img");
   gridIcon.setAttribute("src", "../../../public/grid-layout.svg");
   gridIcon.setAttribute("id", "gridIcon");
   gridIcon.className = "viewButtons";
 
-  // LIST ICON
   const listIcon = document.createElement("img");
   listIcon.setAttribute("src", "../../../public/list-layout.svg");
   listIcon.setAttribute("id", "listIcon");
@@ -30,12 +27,10 @@ export function createToolBarButtons(container) {
   container.appendChild(viewButtons);
   container.appendChild(categorySelector);
 
-  //CALL TO EVENTS
   changeView(viewButtons);
   changeCategory(categorySelector);
 }
 
-//RETURN BUTTON
 export function createReturnButton(container) {
   const returnButton = document.createElement("img");
   returnButton.setAttribute("src", "../../../public/left-arrow.svg");

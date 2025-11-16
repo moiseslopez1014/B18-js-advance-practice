@@ -1,0 +1,100 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.mainFrame2{
+    display: flex;
+    padding-top: 80px;
+    padding-left: 50px;
+    color: #eee;
+    background-image:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    h2{
+        font-size: 48px;
+    }
+}
+.extrapadding {
+    height: 670px;
+}
+.creditsIMG{
+    height: 450px;
+    width: 300px ;
+    margin: 20px;
+    border-radius: 20px;
+}
+.creditsCastingDiv{
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    padding-top: 15px;
+    
+    
+    .actorDiv{
+        background-size: contain;
+        width: 100px;
+        
+        
+        img{
+            border-radius: 10px;
+            width: 90px;
+        height: 110px;
+        margin-bottom: 30px;}
+        p {
+            text-align: center;
+        }
+ }
+}
+.creditsDiv{
+    margin-left: 15px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    overflow-x:scroll;
+}
+#mainFrame{
+    background-color: #242424;
+    padding: 10px;
+    width: 100%;
+    
+    
+}
+.movie-grid{    
+    .movieDiv{
+        width: 300px;
+        height: 620px;
+    }
+    h2 {
+        cursor: pointer;
+    }
+}
+.movie-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .movieDiv{
+        margin-left: 50px;
+        display: flex;
+        width: 100%;
+        height: 200px;
+        h2 {
+        cursor: pointer;
+    }
+        .divInfo{
+            width: 950px;
+        }
+        .movie-poster{
+            height: 180px;
+            width: 150px;
+        }
+    }
+}
+.divInfo{
+    color: #eee;
+}

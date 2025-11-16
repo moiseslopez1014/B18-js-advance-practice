@@ -3,6 +3,41 @@
     margin: 0;
     padding: 0;
 }
+.mainFrame2{
+    display: flex;
+    padding-top: 10px;
+}
+.creditsIMG{
+    height: 450px;
+    width: 300px ;
+    margin: 20px;
+    border-radius: 20px;
+}
+.creditsCastingDiv{
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    padding-top: 15px;
+    
+    .actorDiv{
+        background-size: contain;
+        width: 100px;
+        
+        img{
+            border-radius: 10px;
+            width: 90px;
+        height: 110px;
+        margin-bottom: 30px;
+    
+   }
+ }
+}
+.creditsDiv{
+    margin-left: 15px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    overflow-x:scroll;
+}
 #mainFrame{
     background-color: #242424;
     padding: 10px;

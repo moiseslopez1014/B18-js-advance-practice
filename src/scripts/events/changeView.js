@@ -1,18 +1,23 @@
 
 import { setViewingMode } from '../../main.js';
+import { getMovies } from '../api/fetching.js';
 
-export function changeView(buttonsDiv) {
-    buttonsDiv.addEventListener('click', (event) => {
-        const mode = event.target.dataset.view;
+export function changeView() {
+    const gridIcon = document.getElementById("gridIcon");
+    const listIcon = document.getElementById("listIcon");
 
-        if (mode === 'grid') {
-            setViewingMode('movie-grid');
-            console.log('1');
-        }
-        else if (mode === 'list') {
-            setViewingMode('movie-list');
-            console.log('2');
-        }
+    if (!gridIcon || !listIcon) {
+        console.error("❌ No se encontraron los SVG de vista (gridIcon / listIcon)");
+        return;
+    }
+
+    gridIcon.addEventListener("click", () => {
+        setViewingMode("movie-grid");
+        getMovies(); // repinta con la vista grid
+    });
+
+    listIcon.addEventListener("click", () => {
+        setViewingMode("movie-list");
+        getMovies(); // repinta con la vista list
     });
 }
-

@@ -12,14 +12,14 @@ export function createToolBarButtons(container) {
     //GRID ICON
     const gridIcon = document.createElement('img');
     gridIcon.setAttribute('src','../../../public/grid-layout.svg');
-    gridIcon.setAttribute = ('data-view', 'grid');
+    gridIcon.setAttribute = ('id', 'gridIcon');
     gridIcon.className = 'viewButtons';
 
 
     //LIST ICON
     const listIcon = document.createElement('img');
     listIcon.setAttribute('src', '../../../public/list-layout.svg');
-    listIcon.setAttribute = ('data-view', 'list');
+    listIcon.setAttribute = ('id', 'listIcon');
     listIcon.className = 'viewButtons';
 
     viewButtons.appendChild(gridIcon);

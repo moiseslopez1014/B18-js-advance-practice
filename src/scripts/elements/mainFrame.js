@@ -4,6 +4,7 @@ import { portraitsBaseURL } from "../api/fetching.js";
 
 export function createMovieCard(movie) {
   const movieDiv = document.createElement("div"); // card
+  movieDiv.className="movieDiv";
 
   const moviePoster = document.createElement("img"); //poster
   moviePoster.className = 'movie-poster';
@@ -27,6 +28,7 @@ export function createMovieCard(movie) {
   moviePoster.setAttribute("movie-id", movie.id); // we store the ID of the movie to use later in the events
 
   const movieInfo = document.createElement("p");
+  movieInfo.className="movieInfo"
   movieInfo.textContent = `Rating: ${movie.vote_average.toFixed(2)} | ${movie.release_date.slice(0,4)}`;
 
   const movieDescription = document.createElement('p');

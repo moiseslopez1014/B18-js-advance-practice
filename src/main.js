@@ -1,4 +1,4 @@
-
+import "./scss/auxstule.scss";
 import { getMovies } from './scripts/api/fetching.js';
 import { viewingMode, viewingStatus } from './scripts/modules/state.js';
 import { showToolBar } from './scripts/utils/toolbar.js';

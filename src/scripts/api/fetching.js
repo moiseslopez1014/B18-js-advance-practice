@@ -1,5 +1,7 @@
 import { showDetails } from "../elements/mainFrame.js";
+import { cache, setViewingStatus, viewingMode } from "../modules/state.js";
 import { showMovies } from "../utils/dataTreatment.js";
+import { showToolBar } from "../utils/toolbar.js";
  //
 export const API_KEY=
     "a4eebd80d1f64fdddb023da9a6dd2d79" ///la clave de acceso al servidor 
@@ -12,12 +14,28 @@ export const portraitsBaseURL = 'https://image.tmdb.org/t/p/w300'; //URL to get 
 export async function getMovies(category='popular', searchInput) {
     const mainFrame = document.getElementById('mainFrame');
     mainFrame.innerHTML = '';
+    mainFrame.className = viewingMode;
+
+    const sameCategory = category === cache.lastCategory;
+    const sameSearch = searchInput === cache.lastSearch;
+
+    if (sameCategory && sameSearch && cache.lastResults) {
+        console.log("Using cache...");
+        showMovies(mainFrame, { results: cache.lastResults });
+        return;
+    }
 
     try {//TRying to explain...            if no search nothing to do...      if not search put /     reserved to category  if no search query stays empty
         const res = await fetch(`${baseURL}${!searchInput ? '' : 'search/'}movie${!searchInput ? '/' : ''}${category}?query=${searchInput}&api_key=${API_KEY}&language=es-ES&page=1`);
         
         if (!res.ok) throw new Error('Petition Error ' + res.status);
         const data = await res.json();
+
+        cache.lastCategory = category;
+        cache.lastSearch = searchInput;
+        cache.lastResults = data.results;
+
+
         showMovies(mainFrame, data);
         //return console.log(data);
 
@@ -28,9 +46,19 @@ export async function getMovies(category='popular', searchInput) {
 
 // FETCH CREDITS INFO
 export async function getMovieDetailed(movieID) {
+    const mainFrame = document.getElementById('mainFrame');
     const mainFrame2 = document.getElementById('mainFrame2');
-    mainFrame.innerHTML = '';
+    const toolbar = document.querySelector('.settingsMovieBar');
 
+    mainFrame.innerHTML = '';
+    mainFrame2.innerHTML = '';
+
+    // CHANGE STATE
+    setViewingStatus("details");
+
+    // REPAINT TOOLBAR
+    toolbar.innerHTML = '';
+    showToolBar(toolbar, "details");
     try {
         const res = await fetch(`${baseURL}movie/${movieID}?api_key=${API_KEY}&language=es-ES&append_to_response=credits`);
 

@@ -1,5 +1,6 @@
 import { changeView } from "../events/changeView.js";
 import { createCategorySelection } from "../utils/toolbar.js";
+import { changeCategory } from "../events/changeCategory.js";
 
 export function createToolBarButtons(container) {
     const viewButtons = document.createElement('div');
@@ -28,7 +29,8 @@ export function createToolBarButtons(container) {
     container.appendChild(categorySelector);
 
     //CALL TO EVENTS
-    changeView(viewButtons)
+    changeView(viewButtons);
+    changeCategory(categorySelector);
 }
 
 

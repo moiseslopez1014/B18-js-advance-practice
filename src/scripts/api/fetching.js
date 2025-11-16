@@ -1,3 +1,4 @@
+import { showMovies } from "../utils/dataTreatment.js";
 import { API_KEY } from "./api_key.js"; //
 
 const baseURL = 'https://api.themoviedb.org/3/'; //start URL FROM API for Fetching;
@@ -7,13 +8,13 @@ export const portraitsBaseURL = 'https://image.tmdb.org/t/p/w300'; //URL to get 
 export async function getMovies(container, category='popular', searchInput) {
     container.innerHTML = '';
 
-    try {
+    try {//TRying to explain...            if no search nothing to do...      if not search put /     reserved to category  if no search query stays empty
         const res = await fetch(`${baseURL}${!searchInput ? '' : 'search/'}movie${!searchInput ? '/' : ''}${category}?query=${searchInput}&api_key=${API_KEY}&language=es-ES&page=1`);
         
         if (!res.ok) throw new Error('Petition Error ' + res.status);
         const data = await res.json();
-        //return showMovies(container, data);
-        return console.log(data);
+        showMovies(container, data);
+        //return console.log(data);
 
     } catch (error) {
         console.log(error.message);

@@ -1,12 +1,12 @@
 import { categoriesES } from "../api/api_vars.js";
-import { createToolBarButtons } from "../elements/navigationBar.js";
+import { createReturnButton, createToolBarButtons } from "../elements/navigationBar.js";
 
 export function showToolBar(container, mode) {
     if (mode === 'movies') {
-        createToolBarButtons(container)
+        createToolBarButtons(container);
     }
     else {
-        createReturnButton(container)
+        createReturnButton(container);
     }
 }
 

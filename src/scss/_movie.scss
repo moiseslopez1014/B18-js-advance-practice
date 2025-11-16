@@ -49,6 +49,10 @@
   @extend .col-md-4;
   @extend .col-sm-6;
 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  
+
   .movie-poster {
     height: 400px;
   }

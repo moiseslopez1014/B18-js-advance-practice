@@ -24,7 +24,7 @@ export function createToolBarButtons(container) {
     container.appendChild(categorySelector);
 }
     //RETURN BUTTON
-export function navigationToolbarReturnButton(container) {
+export function createReturnButton(container) {
     const returnButton = document.createElement('img');
     returnButton.setAttribute('src','../../../public/left-arrow.svg');
 

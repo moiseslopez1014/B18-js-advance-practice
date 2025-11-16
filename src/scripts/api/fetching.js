@@ -1,6 +1,9 @@
 import { showMovies } from "../utils/dataTreatment.js";
-import { API_KEY } from "./api_key.js"; //
-
+ //
+export const API_KEY=
+    "a4eebd80d1f64fdddb023da9a6dd2d79" ///la clave de acceso al servidor 
+  //TODO->: END POINT && AND SEARCH   
+;
 const baseURL = 'https://api.themoviedb.org/3/'; //start URL FROM API for Fetching;
 export const portraitsBaseURL = 'https://image.tmdb.org/t/p/w300'; //URL to get poster and credits profile images.
 

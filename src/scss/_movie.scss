@@ -1,3 +1,5 @@
+
+
 .movie-toolbar-wrapper {
   @extend .py-2;
   background-color: #eee;
@@ -12,7 +14,7 @@
 .movie-list,
 .movie-details {
   .movie-poster {
-    width: 100%;
+    
     overflow: hidden;
     object-fit: cover;
     border-radius: $border-radius;
@@ -118,9 +120,18 @@
 
 .settingsMovieBar {
   display: flex;
+  position: sticky;
+  top:72px;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #EEEEEE;
+  background-color: #EEE;
   height: 60px;
+}
+.view-buttons{
+  padding-top: 10px;
+  margin-left: 80px;
+  .viewButtons{
+    margin-left: 10px;
+  }
 }
 

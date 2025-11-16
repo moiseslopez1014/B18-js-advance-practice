@@ -1,4 +1,3 @@
-import { viewingMode } from "../../main.js";
 import { portraitsBaseURL } from "../api/fetching.js";
 
 

@@ -1,19 +1,20 @@
 
-import { setViewingMode } from '../../main.js';
-import { getMovies } from '../api/fetching.js';
+import { setViewingMode } from "../modules/state.js"; 
+import { getMovies } from "../api/fetching.js";
 
-export function hookViewButtons() {
-  const viewButtons = document.querySelector('.view-buttons');
-  if (!viewButtons) return;
+export function changeView(buttonsDiv) {
+    buttonsDiv.addEventListener("click", (event) => {
 
-  viewButtons.addEventListener('click', (event) => {
-    const btn = event.target.closest('[data-view]');
-    if (!btn) return;
+        const target = event.target;
 
-    const mode = btn.dataset.view; // 'grid' o 'list'
-    if (mode === 'grid') setViewingMode('movie-grid');
-    else if (mode === 'list') setViewingMode('movie-list');
+        if (target.id === "gridIcon") {
+            setViewingMode("movie-grid");
+            getMovies(); // repinta usando grid
+        }
 
-    getMovies(); // repinta usando viewingMode desde state.js
-  });
+        if (target.id === "listIcon") {
+            setViewingMode("movie-list");
+            getMovies(); // repinta usando list
+        }
+    });
 }

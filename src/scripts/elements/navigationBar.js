@@ -1,3 +1,4 @@
+import { changeView } from "../events/changeView.js";
 import { createCategorySelection } from "../utils/toolbar.js";
 
 export function createToolBarButtons(container) {
@@ -11,17 +12,24 @@ export function createToolBarButtons(container) {
     //GRID ICON
     const gridIcon = document.createElement('img');
     gridIcon.setAttribute('src','../../../public/grid-layout.svg');
-    gridIcon.className = 'grid__Icon';
+    gridIcon.setAttribute = ('data-view', 'grid');
+    gridIcon.className = 'viewButtons';
+
 
     //LIST ICON
     const listIcon = document.createElement('img');
     listIcon.setAttribute('src', '../../../public/list-layout.svg');
-    listIcon.className = 'list__Icon';
+    listIcon.setAttribute = ('data-view', 'list');
+    listIcon.className = 'viewButtons';
 
     viewButtons.appendChild(gridIcon);
     viewButtons.appendChild(listIcon);
     container.appendChild(viewButtons);
     container.appendChild(categorySelector);
+    
+    //CALL TO EVENTS
+    changeView(viewButtons)
+
 }
     //RETURN BUTTON
 export function createReturnButton(container) {

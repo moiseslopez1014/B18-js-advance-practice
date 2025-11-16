@@ -7,7 +7,9 @@ import './scss/style.scss'
 export let viewingMode = 'movie-grid'; //ALTERNATE WITH LIST OR GRID
 export let viewingStatus = 'movies';// ALTERNATE TO SHOW MOVIES OR CREDITS
 
-
+export function setViewingMode(mode) {
+    viewingMode = mode;
+}
 
 const anchorElement = document.querySelector('#app');
 //TOOLBAR WHIT CATEGORY SELECTOR

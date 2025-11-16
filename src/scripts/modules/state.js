@@ -3,15 +3,15 @@ export let viewingStatus = "movies";
 
 // CACHE
 export const cache = {
-    lastCategory: 'now_playing',
-    lastSearch: '',
-    lastResults: null,
+  lastCategory: "now_playing",
+  lastSearch: "",
+  lastResults: null,
 };
 
 export function setViewingMode(mode) {
-    viewingMode = mode;
+  viewingMode = mode;
 }
 
 export function setViewingStatus(status) {
-    viewingStatus = status;
+  viewingStatus = status;
 }

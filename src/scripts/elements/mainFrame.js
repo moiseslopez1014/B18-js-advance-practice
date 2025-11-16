@@ -1,41 +1,40 @@
 import { portraitsBaseURL } from "../api/fetching.js";
 import { selectMovie } from "../events/selectMovie.js";
 
-
-
+// MOVIE CARD
 export function createMovieCard(movie) {
   const movieDiv = document.createElement("div"); // card
-  movieDiv.className="movieDiv";
+  movieDiv.className = "movieDiv";
 
   const moviePoster = document.createElement("img"); //poster
-  moviePoster.className = 'movie-poster';
+  moviePoster.className = "movie-poster";
   if (!movie.poster_path) {
     moviePoster.setAttribute("src", "../../../public/NoPoster.png"); //In case movie doesnt have a poster
-
   } else {
     moviePoster.setAttribute("src", `${portraitsBaseURL}${movie.poster_path}`); //set img with movie poster
   }
 
-  const divInfo = document.createElement('div');
-  divInfo.className = 'divInfo';
-
+  const divInfo = document.createElement("div");
+  divInfo.className = "divInfo";
 
   const movieTitle = document.createElement("h2");
   movieTitle.textContent = movie.title;
-  movieTitle.className = 'movie-title'
+  movieTitle.className = "movie-title";
 
   movieTitle.setAttribute("movie-id", movie.id); // we store the ID of the movie to use later in the events
 
   moviePoster.setAttribute("movie-id", movie.id); // we store the ID of the movie to use later in the events
 
   const movieInfo = document.createElement("p");
-  movieInfo.className="movieInfo"
-  movieInfo.textContent = `Rating: ${movie.vote_average.toFixed(2)} | ${movie.release_date.slice(0,4)}`;
+  movieInfo.className = "movieInfo";
+  movieInfo.textContent = `Rating: ${movie.vote_average.toFixed(
+    2
+  )} | ${movie.release_date.slice(0, 4)}`;
 
-  const movieDescription = document.createElement('p');
+  const movieDescription = document.createElement("p");
   movieDescription.textContent = movie.overview;
-  movieDescription.className = 'movie-overview'
-
+  movieDescription.className = "movie-overview";
+  //APPENDS
   movieDiv.appendChild(moviePoster);
   divInfo.appendChild(movieTitle);
   divInfo.appendChild(movieInfo);
@@ -44,12 +43,16 @@ export function createMovieCard(movie) {
 
   selectMovie(moviePoster, movieTitle);
 
-
   return movieDiv;
 }
 
-
 export function showDetails(movie, container) {
+  const mainFrame2 = document.getElementById("mainFrame2");
+  mainFrame2.style.setProperty(
+    "--bg-img",
+    `url("https://image.tmdb.org/t/p/w300${movie.poster_path}")`
+  );
+
   //credits poster
 
   const creditsImg = document.createElement("img");
@@ -79,10 +82,18 @@ export function showDetails(movie, container) {
 
   creditsDiv.appendChild(creditsTitle);
 
+  const movieInfo = document.createElement("p");
+  movieInfo.className = "movieInfo";
+  movieInfo.textContent = `Rating: ${movie.vote_average.toFixed(
+    2
+  )} | ${movie.release_date.slice(0, 4)}`;
+
+  creditsDiv.appendChild(movieInfo);
+
   //credits sinopsis
 
   const creditsDescription = document.createElement("p");
-  creditsDescription.textContent = movie.overview;
+  creditsDescription.textContent = `Sinopsis: ${movie.overview}`;
 
   creditsDiv.appendChild(creditsDescription);
 
@@ -115,14 +126,10 @@ export function showDetails(movie, container) {
 
       actorDiv.appendChild(actorName);
 
-      const separasion = document.createElement("hr");
+      const extrapadding = document.createElement("div");
+      extrapadding.className = "extrapadding";
 
-      actorDiv.appendChild(separasion);
-
-      const actorChar = document.createElement("p");
-      actorChar.textContent = actor.character;
-
-      actorDiv.appendChild(actorChar);
+      container.appendChild(extrapadding);
     }
   });
 }

@@ -1,5 +1,5 @@
 import { showDetails } from "../elements/mainFrame.js";
-import { setViewingStatus, viewingMode } from "../modules/state.js";
+import { cache, setViewingStatus, viewingMode } from "../modules/state.js";
 import { showMovies } from "../utils/dataTreatment.js";
 import { showToolBar } from "../utils/toolbar.js";
  //
@@ -16,11 +16,26 @@ export async function getMovies(category='popular', searchInput) {
     mainFrame.innerHTML = '';
     mainFrame.className = viewingMode;
 
+    const sameCategory = category === cache.lastCategory;
+    const sameSearch = searchInput === cache.lastSearch;
+
+    if (sameCategory && sameSearch && cache.lastResults) {
+        console.log("Using cache...");
+        showMovies(mainFrame, { results: cache.lastResults });
+        return;
+    }
+
     try {//TRying to explain...            if no search nothing to do...      if not search put /     reserved to category  if no search query stays empty
         const res = await fetch(`${baseURL}${!searchInput ? '' : 'search/'}movie${!searchInput ? '/' : ''}${category}?query=${searchInput}&api_key=${API_KEY}&language=es-ES&page=1`);
         
         if (!res.ok) throw new Error('Petition Error ' + res.status);
         const data = await res.json();
+
+        cache.lastCategory = category;
+        cache.lastSearch = searchInput;
+        cache.lastResults = data.results;
+
+
         showMovies(mainFrame, data);
         //return console.log(data);
 
@@ -38,10 +53,10 @@ export async function getMovieDetailed(movieID) {
     mainFrame.innerHTML = '';
     mainFrame2.innerHTML = '';
 
-    // CAMBIAR ESTADO
+    // CHANGE STATE
     setViewingStatus("details");
 
-    // REPINTAR TOOLBAR
+    // REPAINT TOOLBAR
     toolbar.innerHTML = '';
     showToolBar(toolbar, "details");
     try {

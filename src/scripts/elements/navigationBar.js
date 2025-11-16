@@ -1,7 +1,7 @@
 import { changeView } from "../events/changeView.js";
 import { createCategorySelection, showToolBar } from "../utils/toolbar.js";
 import { changeCategory } from "../events/changeCategory.js";
-import { setViewingStatus } from "../modules/state.js";
+import { cache, setViewingStatus } from "../modules/state.js";
 import { getMovies } from "../api/fetching.js";
 
 export function createToolBarButtons(container) {
@@ -50,7 +50,7 @@ export function createReturnButton(container) {
         toolbar.innerHTML = '';
         showToolBar(toolbar, "movies");
 
-        getMovies(); // ← volver a la vista previa
+        getMovies(cache.lastCategory, cache.lastSearch);
     });
 
     container.appendChild(returnButton);

@@ -2,6 +2,7 @@ import "./scss/auxstule.scss";
 import { getMovies } from './scripts/api/fetching.js';
 import { viewingMode, viewingStatus } from './scripts/modules/state.js';
 import { showToolBar } from './scripts/utils/toolbar.js';
+import { searchMovies } from "./scripts/events/searchListener.js";
 import './scss/style.scss'
 
 
@@ -32,4 +33,5 @@ anchorElement.appendChild(mainFrame2);
 showToolBar(toolbarMovies, viewingStatus);
 //FUNCTION TO GET CONTENT
 getMovies('now_playing', '');
-
+//FUNCTION TO SEARCH
+searchMovies();

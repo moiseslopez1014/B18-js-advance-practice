@@ -5,7 +5,7 @@ export let viewingStatus = "movies";
 export const cache = {
     lastCategory: 'now_playing',
     lastSearch: '',
-    lastResults: null // ← aquí guardaremos movies.results
+    lastResults: null,
 };
 
 export function setViewingMode(mode) {

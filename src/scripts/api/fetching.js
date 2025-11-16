@@ -28,7 +28,7 @@ export async function getMovies(category='popular', searchInput) {
 
 // FETCH CREDITS INFO
 export async function getMovieDetailed(movieID) {
-    const mainFrame = document.getElementById('mainFrame');
+    const mainFrame2 = document.getElementById('mainFrame2');
     mainFrame.innerHTML = '';
 
     try {
@@ -38,7 +38,7 @@ export async function getMovieDetailed(movieID) {
         const data = await res.json();
 
         console.log(data);
-        return showDetails(data, mainFrame);
+        return showDetails(data, mainFrame2);
     } catch (error) {
         console.log(error.message);
     }

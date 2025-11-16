@@ -20,6 +20,12 @@ mainFrame.setAttribute('id','mainFrame');
 
 anchorElement.appendChild(mainFrame);
 
+// MAIN CONTAINER FOR CREDITS
+const mainFrame2 = document.createElement('section');
+mainFrame2.className = 'mainFrame2';
+mainFrame2.setAttribute('id','mainFrame2');
+
+anchorElement.appendChild(mainFrame2);
 
 
 // FUNCTION TO CREATE AND SHOW TOOLBAR ELEMENTS

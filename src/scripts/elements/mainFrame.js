@@ -97,13 +97,19 @@ export function showDetails(movie, container) {
 
   creditsDiv.appendChild(creditsCastingDiv);
 
+    const creditsCrewDiv = document.createElement("div");
+  creditsCrewDiv.className = "creditsCastingDiv";
+
+  creditsDiv.appendChild(creditsCrewDiv);
+
+
 
   movie.credits.cast.forEach((actor) => {
     if (actor.profile_path !== null) {
       const actorDiv = document.createElement("div");
       actorDiv.className = "actorDiv";
 
-      creditsCastingDiv.appendChild(actorDiv);
+      creditsCrewDiv.appendChild(actorDiv);
 
       const actorPortrait = document.createElement("img");
       actorPortrait.setAttribute(
@@ -114,14 +120,38 @@ export function showDetails(movie, container) {
       actorDiv.appendChild(actorPortrait);
 
       const actorName = document.createElement("p");
-      actorName.textContent = actor.name;
+      actorName.textContent = `${actor.name} | As: ${actor.character}`;
 
       actorDiv.appendChild(actorName);
 
-      const extrapadding = document.createElement("div");
-      extrapadding.className = "extrapadding";
 
-      container.appendChild(extrapadding);
     }
   });
+
+
+  movie.credits.crew.forEach((crew) => {
+    if (crew.profile_path !== null) {
+      const crewDiv = document.createElement("div");
+      crewDiv.className = "actorDiv";
+
+      creditsCastingDiv.appendChild(crewDiv);
+
+      const crewPortrait = document.createElement("img");
+      crewPortrait.setAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/w300${crew.profile_path}`
+      );
+
+      crewDiv.appendChild(crewPortrait);
+
+      const crewName = document.createElement("p");
+      crewName.textContent = `${crew.name} | As: ${crew.job}`
+
+      crewDiv.appendChild(crewName);
+
+    }
+  });
+
+
+
 }
